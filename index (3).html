@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* NAVIGATION BAR */
+nav {
+    width: 100%;
+    background-color: #0275d8;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    padding: 12px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 12px;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #fff;
+    color: #0275d8;
+    border-radius: 4px;
+}
+
+/* MEGA DROPDOWN */
+.mega-dropdown {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    background-color: #f8f8f8;
+    width: 500px;
+    padding: 20px;
+    border-radius: 6px;
+    display: none;
+    color: black;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+nav ul li:hover .mega-dropdown {
+    display: block;
+}
+
+.mega-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mega-col {
+    width: 45%;
+}
+
+.mega-col h4 {
+    margin-bottom: 10px;
+    color: #0275d8;
+}
+
+.mega-col a {
+    display: block;
+    color: black;
+    text-decoration: none;
+    padding: 5px 0;
+    transition: 0.2s;
+}
+
+.mega-col a:hover {
+    color: #0275d8;
+}
+
+/* HAMBURGER */
+.menu-icon {
+    font-size: 28px;
+    display: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        position: fixed;
+        top: 60px;
+        left: -100%;
+        width: 250px;
+        height: 100vh;
+        flex-direction: column;
+        background-color: #013b73;
+        padding-top: 30px;
+        gap: 20px;
+        transition: 0.3s;
+    }
+    nav ul.show {
+        left: 0;
+    }
+    .menu-icon {
+        display: block;
+    }
+
+    /* Mega dropdown collapses on mobile */
+    .mega-dropdown {
+        position: relative;
+        width: 100%;
+    }
+}
+
+/* FOOTER */
+footer {
+    background-color: #013b73;
+    color: white;
+    margin-top: 50px;
+    padding: 40px 20px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-col {
+    width: 23%;
+    min-width: 180px;
+    margin-bottom: 20px;
+}
+
+.footer-col h3 {
+    margin-bottom: 15px;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    padding: 6px 0;
+}
+
+.footer-col ul li a {
+    text-decoration: none;
+    color: #cfe7ff;
+}
+
+.footer-col ul li a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 20px 0 0;
+    border-top: 1px solid #4aa3ff;
+    margin-top: 20px;
+    font-size: 14px;
+}
+</style>
+
+    <style>
+        body {
+            background-color: gold; /* fallback color */
+            background-image: url("https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg"); /* local image */
+            background-size: cover; /* makes image cover the whole page */
+            background-repeat: no-repeat;
+            background-position: center center;
+            color: black; /* text color */
+            margin: 0;
+            font-family: Arial, sans-serif; text-align: center;
+        }
+
+        h1, h2, h3, h4 {
+            background-color: lightblue;
+            color: black;
+            text-align: center;
+            padding: 10px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: auto;
+            background-image:URL("https://images.pexels.com/photos/1076758/pexels-photo-1076758.jpeg?_gl=1*4vn3j0*_ga*NTE3NTQ3NzM1LjE3NjAxMzkzMDc.*_ga_8JE65Q40S6*czE3NjIxMjIyODMkbzIkZzEkdDE3NjIxMjIzMDgkajM1JGwwJGgw");: #fff;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        caption {
+            caption-side: top;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        ul {
+              background-image: url("https://images.pexels.com/photos/250591/pexels-photo-250591.jpeg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding: 20px;
+            list-style-type: square;
+        }
+        i { color: tomato ; background-color: lightblue;}
+    </style>
+</head>
+<body>
+    <nav>
+    <div class="logo">ACE TRENCH</div>
+    <ul id="menuList">
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#https://www.facebook.com/profile.php?id=61577437151191">Contact</a></li>
+        <li><a href="#feedback">Feedback</a></li>
+    </ul>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+</nav>
+
+<script>
+function toggleMenu() {
+    document.getElementById("menuList").classList.toggle("show");
+}
+</script>
+
+<!-- Add space so your content does not hide behind the fixed navbar -->
+<br><br><br><br>
+
+    <h2>MY PERSONAL INFORMATION</h2>
+    <p>This is about me. My name is Misheck Shadreck Dee Mwanza. I am from Malawi and I was born in Malawi in Mzimba District at Mzuzu central hospital on January 6 2006.</p>
+    <p>I come from a family of 4 children and am the third born. I attended primary school at St Maria Gorretti Primary School in Nkhatabay. At school, I was a hardworking student who often came first in my class.</p>
+
+    <h2>HERE IS THE BREAKDOWN OF MY PRIMARY SCHOOL ACADEMIC ACHIEVEMENTS</h2>
+
+ <table>
+        <caption>Primary School Academic Achievements</caption>
+        <tr>
+            <th>Standard</th>
+            <th>Term 1</th>
+            <th>Term 2</th>
+            <th>Term 3</th>
+        </tr>
+
+        <tr>
+            <td>Standard 1</td>
+            <td>Position 1</td>
+            <td>Position 1</td>
+            <td>Position 1</td>
+        </tr>
+
+        <tr>
+            <td>Standard 2</td>
+            <td>Position 1</td>
+            <td>Position 2</td>
+            <td>Position 1</td>
+        </tr>
+
+        <tr>
+            <td>Standard 3</td>
+            <td>Position 1</td>
+            <td>Position 9</td>
+            <td>Position 1</td>
+        </tr>
+
+        <tr>
+            <td>Standard 4</td>
+            <td>Position 14</td>
+            <td>Position 24 (Did not write some subjects)</td>
+            <td>Position 2</td>
+        </tr>
+
+        <tr>
+            <td>Standard 5</td>
+            <td>Position 2</td>
+            <td>Position 5</td>
+            <td>Position 1</td>
+        </tr>
+
+        <tr>
+            <td>Standard 6</td>
+            <td>Position 3</td>
+            <td>Position 2</td>
+            <td>Position 1</td>
+        </tr>
+
+        <tr>
+            <td>Standard 7</td>
+            <td>Position 1</td>
+            <td>Position 2</td>
+            <td>Position 1</td>
+        </tr>
+
+        <tr>
+            <td>Standard 8</td>
+            <td>Position 1</td>
+            <td>Position 1</td>
+            <td>Position (MANEB---got 4 As & 2 Bs)</td>
+        </tr>
+    </table>
+    
+<h3>MY LIFE AS A TEENAGER</h3>
+   <p>At the age of 14 as was selected to start secondary school at a certain boarding school situated in Nkhatabay.The name of the school is <i>Bandawe secondary school.</i> Life really changed when I was at this school, as a teenager I started indulging myself into ameteur relationships the first girl to date with was name <i>RABECCA KAMANGA</i>. Beautiful but a cunning girl at first she was loyal to me , she was devoted to love me but how cruel time vanished out love into the abyss,two years later we separated </p>
+   <p>Relationships like these may impact student's academic performance in fact it negatively infected me but thanks to my hard working spirit I managed to pass with good grades in form 1</p>
+   
+   <p><b>BEFORE WE GO FURTHER LET'S LOOK AT MY FAMILY MEMBERS FIRST </b></p>
+   
+ <!--table for my family members!-->
+ 
+ <table>
+        <caption>MY FAMILY MEMBERS </caption>
+        <tr>
+            <th>MEMBER</th>
+            <th>AGE</th>
+            <th>GENDER</th>
+            <th>CHARACTERS</th>
+        </tr>
+  <tr>
+            <td>Boston Mwanza Head Father</td>
+            <td> 50 </td>
+            <td> Male </td>
+            <td>
+                  <ul>
+                     <li>Arrogant</li>
+                     <li>Irresponsible</li>
+                     <li>Violent</li>
+                     <li>Resentful </li>
+                  </ul>
+            </td>
+        </tr>
+     <tr>
+            <td> Judith Phiri (Head mother)</td>
+            <td> 42 </td>
+            <td> female </td>
+            <td>
+                  <ul>
+                     <li>Caring</li>
+                     <li>Responsible</li>
+                     <li> Loving</li>
+                    <li>Loyal</li>
+                  </ul>
+            </td>
+        </tr>
+       <tr>
+            <td> ACKIM (1st born)</td>
+            <td> 26 </td>
+            <td> male </td>
+            <td>
+                  <ul>
+                     <li> Compassionate</li>
+                     <li> Easily influenced</li>
+                     <li> Indecisive</li>
+                     <li> Gentle</li>
+                 </ul>
+            </td>
+       </tr>
+       <tr>
+            <td> BRUCE</td>
+            <td> 22 </td>
+            <td> male </td>
+            <td>
+                  <ul>
+                     <li> Brave </li>
+                     <li> Impatient</li>
+                     <li> Hardworking</li>
+                    <li> Gluttonous</li>
+                 </ul>
+            </td>
+        </tr>
+        <tr>
+            <td> MISHECK</td>
+            <td> 19 </td>
+            <td> male </td>
+            <td>
+                  <ul>
+                     <li> Ambitious</li>
+                     <li> Disciplined</li>
+                     <li> Responsible</li>
+                     <li> Patient</li>
+                     <li> Practical</li>
+                     <li> Pessimistic </li>
+                     <li> Hilarious</li>
+                 </ul>
+            </td>
+        </tr>
+        <tr>
+            <td> MOSES ( Last born) </td>
+            <td> 15 </td>
+            <td> male </td>
+            <td>
+                  <ul>
+                     <li> Passionate</li>
+                     <li> Loyal</li>
+                     <li> Jealous</li>
+                     <li> Secretive</li>
+                     <li> Vengeful </li>
+                 </ul>
+            </td>
+        </tr>
+        <tr>
+            <td> RICHARD (grand child)</td>
+            <td> 1 yr 2 months</td>
+            <td> male </td>
+            <td>
+                  <ul>
+                     <li> Generous</li>
+                     <li> Arrogant</li>
+                     <li> Confident</li>
+                     <li> Impatient</li>
+                     <li> Hot-tempered </li>
+                     <li> self-centered</li>
+                 </ul>
+            </td>
+        </tr>
+</table>
+
+<h4><b>The table above was about my family members let's proceed with the fascinating story of life</b></h4>
+<h2> LIFE AT SECONDARY SCHOOL</h2> 
+   <p> 
+   That's how my first encounter at secondary school is told. When the days went on and when my body was encountering some changes both emotional and physical. I thought to myself it is not good for a man to be alone so I engaged with a girl named <i> PRECIOUS </i> She was much prettier than many boys at the school campus envied me and wanted to destroy our relationship.
+   </p>
+   <p> Unfortunately this girl was easily manipulated that she got pregnant during the second term holiday period and dropped out of school. That's how I became single again . But to myself I swear a filthy oath never to fall in love again since I released the futility of ameteur relationships. Then I became a gangster ( Badman Never Mind) they say. Some like-minded guys could follow me and we made a companionship.
+   </p>
+<h3> Before we continue the story let's look down everything about me </h3>
+   <p> This is a breakdown about me including everything</p>
+   <table>
+        <caption>MORE INFO</caption>
+        <tr>
+            <th>HOBBIES</th>
+            <th> OTHER NAMES</th>
+            <th>WORKS</th>
+            <th>DREAMS</th>
+        </tr>
+  <tr>
+            <td><ol>
+                <li>Writing</li>
+                <li>playing football</li>
+                <li>Learning </li>
+                <li>Flight ✈️</li>
+                <li>Adventure</li> </ol> </td>
+            <td><ol> Ace Trench 
+            Dee Sahvee
+            Lil snappy</ol></td>
+            <td> made a simple python graphical game 
+            wrote some novels</td>
+            <td>
+                  <ul>
+                     <li>Want to become great novelist</li>
+                     <li>want to become a biomedical engineer</li>
+                     <li>Want to become a software engineer</li>
+                    <li>Want to become a pentester</li>
+                 </ul>
+            </td>
+        </tr>
+</table>        
+<h3><b>THEN CAME A DIFFERENT STORY</b></h3>
+     <p>Thus a son of a man was reborn with new attributes ----to achieve his dreams of becoming a renowned cyber expert </p>
+     <div class="card"> <h3>ACE TRENCH</h3> <p>Full-stack developer.</p> </div> <style> .card { background-color: lightblue; padding: 20px; border-radius: 10px; } </style> 
+<div class="page"><h2>My dreams </h2></div>    
+  <footer>
+    <div class="footer-container">
+        
+        <div class="footer-col">
+            <h3>About Me</h3>
+            <p>Young Malawian dreamer. Future cyber expert, developer, engineer & billionaire.</p>
+        </div>
+
+        <div class="footer-col">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#feedback">Feedback</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3>Services</h3>
+            <ul>
+                <li><a href="#">Web Development</a></li>
+                <li><a href="#">Pen Testing</a></li>
+                <li><a href="#">Python Projects</a></li>
+                <li><a href="#">App Development</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3>Contact</h3>
+            <ul>
+                <li>Email: Deesahvee@gmail.com<br>Acetrench265@gmail.com</li>
+                <li>Phone: +265-896-011-894</li>
+                <li>Location: Malawi</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2025 Misheck Dee Sahvee — All Rights Reserved.
+    </div>
+</footer>
+
+</body>
+</html>
